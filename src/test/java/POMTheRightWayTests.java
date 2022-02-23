@@ -1,13 +1,11 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
+import pages.AuthorPage;
+import pages.HomePage;
+import pages.SearchPage;
 
 public class POMTheRightWayTests {
 
@@ -16,14 +14,17 @@ public class POMTheRightWayTests {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-        driver.get("https://dev.to");
-        driver.findElement(By.name("q")).sendKeys("Christian Vasquez", Keys.ENTER);
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//a[contains(text(), \"People\")])[2]"))).click();
-        wait.until(ExpectedConditions.elementToBeClickable(By.id("article-link-3727"))).click();
+        HomePage homePage = new HomePage(driver);
+        homePage.open("https://dev.to");
+        homePage.getSearchBar().sendKeys("Christian Vasquez", Keys.ENTER);
 
-        assert wait.until(ExpectedConditions.urlMatches("https://dev.to/chrisvasqm"));
+        SearchPage searchPage = new SearchPage(driver);
+        searchPage.getPeopleFilter().click();
+        searchPage.getAuthorLink().click();
+
+        AuthorPage authorPage = new AuthorPage(driver);
+        assert authorPage.is("chrisvasqm");
         driver.quit();
     }
 
