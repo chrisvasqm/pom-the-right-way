@@ -1,19 +1,25 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class HomePage extends Page {
+public class Home extends Page {
     private WebElement searchBar;
 
-    public HomePage(WebDriver driver) {
+    public Home(WebDriver driver) {
         super(driver);
     }
 
-    public WebElement getSearchBar() {
+    public void open() {
+        driver.get("https://dev.to/");
+    }
+
+    public Search searchFor(String query) {
         searchBar = getWait().until(ExpectedConditions.elementToBeClickable(By.name("q")));
-        return searchBar;
+        searchBar.sendKeys(query, Keys.ENTER);
+        return new Search(driver);
     }
 }

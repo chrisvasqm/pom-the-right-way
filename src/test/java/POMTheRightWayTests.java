@@ -1,30 +1,39 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.AuthorPage;
-import pages.HomePage;
-import pages.SearchPage;
+import pages.Author;
+import pages.Home;
+import pages.Search;
 
 public class POMTheRightWayTests {
+    private WebDriver driver;
+
+    @BeforeMethod
+    public void setUp() {
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+    }
 
     @Test
     public void search_UserProfile_InDevTo() {
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        // Arrange
+        Home home = new Home(driver);
 
-        HomePage homePage = new HomePage(driver);
-        homePage.open("https://dev.to");
-        homePage.getSearchBar().sendKeys("Christian Vasquez", Keys.ENTER);
+        // Act
+        home.open();
+        Search search = home.searchFor("Christian Vasquez");
+        Author author = search.selectAuthor();
 
-        SearchPage searchPage = new SearchPage(driver);
-        searchPage.getPeopleFilter().click();
-        searchPage.getAuthorLink().click();
+        // Assert
+        assert author.is("chrisvasqm");
+    }
 
-        AuthorPage authorPage = new AuthorPage(driver);
-        assert authorPage.is("chrisvasqm");
+    @AfterMethod
+    public void tearDown() {
         driver.quit();
     }
 
