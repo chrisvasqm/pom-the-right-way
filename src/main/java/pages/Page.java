@@ -7,7 +7,7 @@ import java.time.Duration;
 
 public class Page {
     protected WebDriver driver;
-    private WebDriverWait wait;
+    protected WebDriverWait wait;
 
     public Page(final WebDriver driver) {
         if (driver == null)
@@ -15,10 +15,6 @@ public class Page {
 
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-    }
-
-    public WebDriverWait getWait() {
-        return wait;
     }
 
 }

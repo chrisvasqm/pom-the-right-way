@@ -14,10 +14,10 @@ public class Search extends Page {
     }
 
     public Author selectAuthor() {
-        peopleFilter = getWait().until(ExpectedConditions.elementToBeClickable(By.xpath("(//a[contains(text(), \"People\")])[2]")));
+        peopleFilter = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//a[contains(text(), \"People\")])[2]")));
         peopleFilter.click();
 
-        authorLink = getWait().until(ExpectedConditions.elementToBeClickable(By.id("article-link-3727")));
+        authorLink = wait.until(ExpectedConditions.elementToBeClickable(By.id("article-link-3727")));
         authorLink.click();
         return new Author(driver);
     }

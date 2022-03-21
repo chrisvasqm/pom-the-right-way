@@ -18,7 +18,7 @@ public class Home extends Page {
     }
 
     public Search searchFor(String query) {
-        searchBar = getWait().until(ExpectedConditions.elementToBeClickable(By.name("q")));
+        searchBar = wait.until(ExpectedConditions.elementToBeClickable(By.name("q")));
         searchBar.sendKeys(query, Keys.ENTER);
         return new Search(driver);
     }

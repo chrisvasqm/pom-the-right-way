@@ -10,6 +10,6 @@ public class Author extends Page {
     }
 
     public boolean is(String who) {
-        return getWait().until(ExpectedConditions.urlMatches("https://dev.to/" + who));
+        return wait.until(ExpectedConditions.urlMatches("https://dev.to/" + who));
     }
 }
