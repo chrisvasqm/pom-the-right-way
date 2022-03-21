@@ -20,11 +20,11 @@ public class POMTheRightWayTests {
 
     @Test
     public void search_UserProfile_InDevTo() {
-        Home home = new Home(driver);
+        var home = new Home(driver);
 
         home.open();
-        Search search = home.searchFor("Christian Vasquez");
-        Author author = search.selectAuthor();
+        var search = home.searchFor("Christian Vasquez");
+        var author = search.selectAuthor();
 
         assert author.is("chrisvasqm");
     }
