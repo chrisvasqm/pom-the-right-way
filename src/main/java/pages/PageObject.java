@@ -5,11 +5,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public abstract class Page {
+public abstract class PageObject {
     protected WebDriver driver;
     protected WebDriverWait wait;
 
-    public Page(final WebDriver driver) {
+    public PageObject(final WebDriver driver) {
         if (driver == null)
             throw new IllegalArgumentException("The driver cannot be null. Please provide a valid reference.");
 

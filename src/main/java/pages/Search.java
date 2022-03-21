@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class Search extends Page {
+public class Search extends PageObject {
     private WebElement peopleFilter;
     private WebElement authorLink;
 

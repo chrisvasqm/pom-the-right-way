@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class Author extends Page {
+public class Author extends PageObject {
 
     public Author(WebDriver driver) {
         super(driver);

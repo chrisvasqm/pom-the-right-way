@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class Home extends Page {
+public class Home extends PageObject {
     private WebElement searchBar;
 
     public Home(WebDriver driver) {
