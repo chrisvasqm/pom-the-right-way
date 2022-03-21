@@ -5,7 +5,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class Page {
+public abstract class Page {
     protected WebDriver driver;
     protected WebDriverWait wait;
 
